@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Chosen Palette: Cool Blues & Vibrant Accents -->
     <!-- Application Structure Plan: A single-page, scrollable application with a sticky top navigation bar. This structure allows users to easily jump between the main topics from their syllabus. The interactive elements have been replaced with a clear Question & Answer format to function as a study guide. Each topic is in its own section, containing relevant "Viva Voce" style questions and answers derived directly from the provided syllabus documents. This design prioritizes clarity, relevance, and ease of study. -->
     <!-- Visualization & Content Choices: 
         - All interactive elements (charts, diagrams, animations) have been removed.
@@ -20,120 +20,151 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
         }
         .nav-link {
             transition: color 0.3s ease;
+            position: relative;
         }
         .nav-link:hover {
-            color: #EA580C;
+            color: #f97316;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #f97316;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
         }
         .qa-card {
+            background: white;
+            border-left: 4px solid #f97316;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .qa-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800">
+<body class="bg-slate-100 text-slate-800">
 
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-stone-200">
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-orange-700">DAA Viva Voce Prep ✨</h1>
-            <div class="hidden md:flex space-x-6">
-                <a href="#brute-force" class="nav-link text-stone-600 font-medium">Brute Force (Knapsack)</a>
-                <a href="#divide-and-conquer" class="nav-link text-stone-600 font-medium">Divide & Conquer (Quick Sort)</a>
-                <a href="#greedy" class="nav-link text-stone-600 font-medium">Greedy Technique (Dijkstra's & Huffman)</a>
+            <h1 class="text-xl md:text-2xl font-bold text-orange-600">DAA Viva Voce Prep ✨</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#quicksort" class="nav-link text-slate-600 font-medium">Quick Sort</a>
+                <a href="#knapsack" class="nav-link text-slate-600 font-medium">Knapsack</a>
+                <a href="#dijkstra" class="nav-link text-slate-600 font-medium">Dijkstra's</a>
+                <a href="#huffman" class="nav-link text-slate-600 font-medium">Huffman</a>
             </div>
         </nav>
     </header>
 
     <main class="container mx-auto px-6 py-12">
         
-        <section id="brute-force" class="mb-20 scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Experiment: Knapsack Problem (Brute Force)</h2>
-            <p class="text-stone-600 mb-12">This section covers the Brute Force method, a straightforward approach to problem-solving, focusing on the Knapsack problem.</p>
-            
-            <div class="space-y-8">
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is the Brute Force approach?</h3>
-                    <p class="text-stone-600">A: It's a straightforward strategy for solving problems, usually based directly on the problem statement and definitions. It's often called the "just do it" approach because it generates every possible solution and checks them against the problem's constraints.</p>
+        <section id="quicksort" class="mb-20 scroll-mt-24">
+            <h2 class="text-4xl font-bold mb-4 text-slate-900">Quick Sort & Divide and Conquer</h2>
+            <div class="space-y-6">
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the divide and conquer technique?</h3>
+                    <p class="text-slate-600">A: It is a problem-solving strategy that involves three steps: 1) **Divide** the problem into smaller sub-problems, 2) **Conquer** the sub-problems by solving them recursively, and 3) **Combine** the solutions of the sub-problems to get the solution for the original problem.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Brute Force solve the 0/1 Knapsack Problem?</h3>
-                    <p class="text-stone-600">A: It generates every possible subset of the given items. For each subset, it calculates the total weight and total value. If the total weight is within the knapsack's capacity, it compares the total value with the best solution found so far. This approach has a time complexity of O(2ⁿ), as there are 2ⁿ possible subsets for n items.</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the pivot element in quick sort?</h3>
+                    <p class="text-slate-600">A: The pivot is an element from the array that is chosen to partition the other elements. In the partitioning step, all elements less than the pivot are moved before it, and all elements greater than the pivot are moved after it. The pivot is then in its final sorted position.</p>
                 </div>
-                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the strengths and weaknesses of Brute Force?</h3>
-                    <p class="text-stone-600"><strong class="font-semibold">Strengths:</strong> It has wide applicability, is simple to implement, and provides reasonable solutions for some important problems like string matching and matrix multiplication.<br><strong class="font-semibold">Weaknesses:</strong> It rarely yields efficient algorithms and can be unacceptably slow for large instances. It's not considered as constructive as other design techniques.</p>
+                 <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the worst-case time complexity of Quick Sort?</h3>
+                    <p class="text-slate-600">A: The worst-case time complexity of Quick Sort is O(n²). This happens when the pivot choices lead to extremely unbalanced partitions, such as when sorting an already sorted array.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the Brute Force approach to the Traveling Salesman Problem (TSP).</h3>
-                    <p class="text-stone-600">A: For the Traveling Salesman Problem, the brute force method uses exhaustive search. It generates every possible tour (Hamiltonian circuit), calculates the cost (total distance) of each tour, and then selects the one with the minimum cost. The time complexity is factorial, O((n-1)!), making it infeasible for all but the smallest number of cities.</p>
+                 <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Which sorting algorithms use the divide and conquer technique?</h3>
+                    <p class="text-slate-600">A: Besides Quick Sort, another prominent sorting algorithm that uses the divide and conquer technique is **Merge Sort**.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="my-20 border-stone-200">
+        <hr class="my-20 border-slate-300">
 
-        <section id="divide-and-conquer" class="mb-20 scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Experiment: Quick Sort (Divide and Conquer)</h2>
-            <p class="text-stone-600 mb-12">This section covers the Divide and Conquer strategy, focusing on the Quick Sort algorithm.</p>
-            
-            <div class="space-y-8">
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the three main steps of the Divide and Conquer strategy?</h3>
-                    <p class="text-stone-600">A: The three steps are:<br>1. <strong class="font-semibold">Divide:</strong> Break the problem into two or more smaller, independent sub-problems of the same type.<br>2. <strong class="font-semibold">Conquer:</strong> Solve the smaller sub-problems recursively. If a sub-problem is small enough, solve it directly.<br>3. <strong class="font-semibold">Combine:</strong> Merge the solutions of the sub-problems to obtain the solution for the original, larger problem.</p>
+        <section id="knapsack" class="mb-20 scroll-mt-24">
+            <h2 class="text-4xl font-bold mb-4 text-slate-900">0/1 Knapsack Problem</h2>
+            <div class="space-y-6">
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the 0/1 Knapsack problem?</h3>
+                    <p class="text-slate-600">A: It is an optimization problem where you are given a set of items, each with a weight and a value, and a knapsack with a maximum weight capacity. The goal is to select a subset of items to put into the knapsack to maximize the total value, without exceeding the weight limit.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the role of the 'pivot' in Quick Sort.</h3>
-                    <p class="text-stone-600">A: In Quick Sort, a pivot element is chosen from the array. The array is then partitioned: all elements smaller than the pivot are moved to its left, and all elements larger are moved to its right. After partitioning, the pivot is in its final sorted position. The algorithm then recursively sorts the sub-arrays to the left and right of the pivot.</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the brute force approach in solving knapsack problems?</h3>
+                    <p class="text-slate-600">A: The brute force approach involves generating all possible subsets of the items (2ⁿ subsets for n items), calculating the total weight and value for each subset, and then choosing the subset that has the maximum value while still being within the weight capacity.</p>
                 </div>
-                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is the worst-case time complexity of Quick Sort and when does it occur?</h3>
-                    <p class="text-stone-600">A: The worst-case time complexity of Quick Sort is O(n²). This occurs when the pivot selection consistently results in highly unbalanced partitions. For example, if the array is already sorted and the first or last element is always chosen as the pivot, one partition will have n-1 elements while the other has zero.</p>
+                 <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is it called the 0/1 Knapsack problem?</h3>
+                    <p class="text-slate-600">A: It's called the "0/1" problem because for each item, you have only two choices: either you take the item (1) or you don't take it (0). You cannot take a fraction of an item.</p>
                 </div>
-                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Merge Sort work?</h3>
-                    <p class="text-stone-600">A: Merge Sort follows the Divide and Conquer paradigm. It divides the input array into two halves, recursively calls itself for the two halves to sort them, and then merges the two sorted halves to produce the final sorted array. Its time complexity is O(n log n) in all cases (best, average, and worst).</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the main drawback in the 0/1 Knapsack problem?</h3>
+                    <p class="text-slate-600">A: The main drawback, especially for the brute force solution, is its high computational complexity of O(2ⁿ). This makes it very inefficient and impractical for a large number of items.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="my-20 border-stone-200">
+        <hr class="my-20 border-slate-300">
 
-        <section id="greedy" class="scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Experiments: Dijkstra's & Huffman (Greedy Technique)</h2>
-            <p class="text-stone-600 mb-12">This section covers the Greedy Technique, focusing on Dijkstra's Shortest Path and Huffman Encoding.</p>
+        <section id="dijkstra" class="mb-20 scroll-mt-24">
+            <h2 class="text-4xl font-bold mb-4 text-slate-900">Dijkstra's Algorithm</h2>
+            <div class="space-y-6">
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is a greedy algorithm with its application?</h3>
+                    <p class="text-slate-600">A: A greedy algorithm makes the locally optimal choice at each step, hoping this will lead to a globally optimal solution. A key application is **Dijkstra's algorithm** for finding the shortest path in a graph.</p>
+                </div>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is Dijkstra's algorithm considered a greedy algorithm?</h3>
+                    <p class="text-slate-600">A: It is considered greedy because at every step, it selects the unvisited vertex with the smallest distance from the source. This is a locally optimal choice, made with the goal of finding the overall shortest path.</p>
+                </div>
+                 <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the time complexity of Dijkstra's algorithm?</h3>
+                    <p class="text-slate-600">A: The time complexity depends on the implementation. Using an adjacency matrix or a simple array, it is O(V²). With a more efficient data structure like a binary heap (priority queue), it is O(E + V log V), where V is the number of vertices and E is the number of edges.</p>
+                </div>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is a major limitation of Dijkstra's algorithm?</h3>
+                    <p class="text-slate-600">A: Its major limitation is that it does not work correctly for graphs with negative weight edges, as the greedy assumption no longer holds true in such cases.</p>
+                </div>
+            </div>
+        </section>
 
-            <div class="space-y-8">
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is a Greedy Algorithm?</h3>
-                    <p class="text-stone-600">A: A greedy algorithm builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. It makes a locally optimal choice at each stage with the hope of finding a global optimum. The choices made are irrevocable, meaning they are not changed in subsequent steps.</p>
+        <hr class="my-20 border-slate-300">
+
+        <section id="huffman" class="scroll-mt-24">
+            <h2 class="text-4xl font-bold mb-4 text-slate-900">Huffman Encoding</h2>
+            <div class="space-y-6">
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Where is Huffman coding used?</h3>
+                    <p class="text-slate-600">A: Huffman coding is widely used for lossless data compression in file formats like JPEG and PNG, as well as in compression standards such as GZIP and PKZIP.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Why is Dijkstra's algorithm considered a greedy algorithm?</h3>
-                    <p class="text-stone-600">A: Dijkstra's algorithm is greedy because at each step, it greedily selects the unvisited vertex with the smallest known distance (lowest cost) from the source. It always chooses the path that appears best at the moment, without considering the future steps. This locally optimal choice helps in constructing the shortest path from the source to all other vertices.</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is Huffman coding a lossless compression algorithm?</h3>
+                    <p class="text-slate-600">A: It is "lossless" because no data is lost during compression. The original data can be perfectly reconstructed from the compressed data without any degradation or loss of information.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is Huffman Coding used for?</h3>
-                    <p class="text-stone-600">A: Huffman Coding is a technique used for lossless data compression. It uses a greedy approach to assign variable-length binary codes to characters based on their frequencies. More frequent characters get shorter codes, and less frequent characters get longer codes, which reduces the overall size of the encoded data.</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: How does Huffman coding exhibit the greedy choice property?</h3>
+                    <p class="text-slate-600">A: Its greedy choice is to always merge the two nodes (characters or sub-trees) that have the lowest frequencies. By repeatedly making this locally optimal choice, it builds a globally optimal prefix code tree for compression.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Huffman Coding exhibit the greedy choice property?</h3>
-                    <p class="text-stone-600">A: The greedy choice in Huffman's algorithm is to, at each step, merge the two nodes (characters or sub-trees) with the lowest frequencies. By repeatedly combining the two least likely characters into a new node, it builds an optimal binary tree (the Huffman Tree) that results in the most efficient, prefix-free binary code for the given set of characters.</p>
+                <div class="qa-card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the main advantage of Huffman coding?</h3>
+                    <p class="text-slate-600">A: Its main advantage is its efficiency in compressing data where some characters appear more frequently than others. By assigning shorter binary codes to frequent characters and longer codes to infrequent ones, it significantly reduces the overall file size compared to fixed-length encoding.</p>
                 </div>
             </div>
         </section>
 
     </main>
-
-    <footer class="bg-stone-100 border-t border-stone-200 mt-20">
-        <div class="container mx-auto px-6 py-8 text-center text-stone-500">
-            <p>A Study Tool for Design and Analysis of Algorithms.</p>
-        </div>
-    </footer>
     
 </body>
 </html>
