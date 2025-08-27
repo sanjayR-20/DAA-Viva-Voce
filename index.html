@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAA Viva Voce Prep Tool ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, scrollable application with a sticky top navigation bar. This structure allows users to easily jump between the main topics from their syllabus. The interactive elements have been replaced with a clear Question & Answer format to function as a study guide. Each topic is in its own section, containing relevant "Viva Voce" style questions and answers derived directly from the provided syllabus documents. This design prioritizes clarity, relevance, and ease of study. -->
+    <!-- Visualization & Content Choices: 
+        - All interactive elements (charts, diagrams, animations) have been removed.
+        - Content is now presented in a Q&A format using styled cards for readability.
+        - Each section (Brute Force, Divide & Conquer, Greedy Technique) contains questions and answers directly relevant to the user's syllabus.
+        - Justification: This structure directly addresses the user's request for a syllabus-aligned study tool, making it easy to review key concepts without distracting interactions.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #EA580C;
+        }
+        .qa-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .qa-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-stone-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-orange-700">DAA Viva Voce Prep ✨</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#brute-force" class="nav-link text-stone-600 font-medium">Brute Force</a>
+                <a href="#divide-and-conquer" class="nav-link text-stone-600 font-medium">Divide & Conquer</a>
+                <a href="#greedy" class="nav-link text-stone-600 font-medium">Greedy Technique</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="brute-force" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4">Module II: Brute Force</h2>
+            <p class="text-stone-600 mb-12">This section covers the Brute Force method, a straightforward approach to problem-solving based on the problem's statement and definitions.</p>
+            
+            <div class="space-y-8">
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is the Brute Force approach?</h3>
+                    <p class="text-stone-600">A: It's a straightforward strategy for solving problems, usually based directly on the problem statement and definitions. It's often called the "just do it" approach because it generates every possible solution and checks them against the problem's constraints.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the strengths and weaknesses of Brute Force?</h3>
+                    <p class="text-stone-600"><strong class="font-semibold">Strengths:</strong> It has wide applicability, is simple to implement, and provides reasonable solutions for some important problems like string matching and matrix multiplication.<br><strong class="font-semibold">Weaknesses:</strong> It rarely yields efficient algorithms and can be unacceptably slow for large instances. It's not considered as constructive as other design techniques.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the Brute Force approach to the Traveling Salesman Problem (TSP).</h3>
+                    <p class="text-stone-600">A: For the Traveling Salesman Problem, the brute force method uses exhaustive search. It generates every possible tour (Hamiltonian circuit), calculates the cost (total distance) of each tour, and then selects the one with the minimum cost. The time complexity is factorial, O((n-1)!), making it infeasible for all but the smallest number of cities.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Brute Force solve the 0/1 Knapsack Problem?</h3>
+                    <p class="text-stone-600">A: It generates every possible subset of the given items. For each subset, it calculates the total weight and total value. If the total weight is within the knapsack's capacity, it compares the total value with the best solution found so far. This approach has a time complexity of O(2ⁿ), as there are 2ⁿ possible subsets for n items.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-stone-200">
+
+        <section id="divide-and-conquer" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4">Module II: Divide and Conquer</h2>
+            <p class="text-stone-600 mb-12">This section covers the Divide and Conquer strategy, a well-known algorithm design technique that leads to recursive algorithms.</p>
+            
+            <div class="space-y-8">
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the three main steps of the Divide and Conquer strategy?</h3>
+                    <p class="text-stone-600">A: The three steps are:<br>1. <strong class="font-semibold">Divide:</strong> Break the problem into two or more smaller, independent sub-problems of the same type.<br>2. <strong class="font-semibold">Conquer:</strong> Solve the smaller sub-problems recursively. If a sub-problem is small enough, solve it directly.<br>3. <strong class="font-semibold">Combine:</strong> Merge the solutions of the sub-problems to obtain the solution for the original, larger problem.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Merge Sort work?</h3>
+                    <p class="text-stone-600">A: Merge Sort follows the Divide and Conquer paradigm. It divides the input array into two halves, recursively calls itself for the two halves to sort them, and then merges the two sorted halves to produce the final sorted array. Its time complexity is O(n log n) in all cases (best, average, and worst).</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the role of the 'pivot' in Quick Sort.</h3>
+                    <p class="text-stone-600">A: In Quick Sort, a pivot element is chosen from the array. The array is then partitioned: all elements smaller than the pivot are moved to its left, and all elements larger are moved to its right. After partitioning, the pivot is in its final sorted position. The algorithm then recursively sorts the sub-arrays to the left and right of the pivot.</p>
+                </div>
+                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is the worst-case time complexity of Quick Sort and when does it occur?</h3>
+                    <p class="text-stone-600">A: The worst-case time complexity of Quick Sort is O(n²). This occurs when the pivot selection consistently results in highly unbalanced partitions. For example, if the array is already sorted and the first or last element is always chosen as the pivot, one partition will have n-1 elements while the other has zero.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-stone-200">
+
+        <section id="greedy" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4">Module III: Greedy Technique</h2>
+            <p class="text-stone-600 mb-12">This section covers the Greedy Technique, where solutions are constructed through a sequence of steps making locally optimal choices.</p>
+
+            <div class="space-y-8">
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is a Greedy Algorithm?</h3>
+                    <p class="text-stone-600">A: A greedy algorithm builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. It makes a locally optimal choice at each stage with the hope of finding a global optimum. The choices made are irrevocable, meaning they are not changed in subsequent steps.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Why is Dijkstra's algorithm considered a greedy algorithm?</h3>
+                    <p class="text-stone-600">A: Dijkstra's algorithm is greedy because at each step, it greedily selects the unvisited vertex with the smallest known distance (lowest cost) from the source. It always chooses the path that appears best at the moment, without considering the future steps. This locally optimal choice helps in constructing the shortest path from the source to all other vertices.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is Huffman Coding used for?</h3>
+                    <p class="text-stone-600">A: Huffman Coding is a technique used for lossless data compression. It uses a greedy approach to assign variable-length binary codes to characters based on their frequencies. More frequent characters get shorter codes, and less frequent characters get longer codes, which reduces the overall size of the encoded data.</p>
+                </div>
+                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Huffman Coding exhibit the greedy choice property?</h3>
+                    <p class="text-stone-600">A: The greedy choice in Huffman's algorithm is to, at each step, merge the two nodes (characters or sub-trees) with the lowest frequencies. By repeatedly combining the two least likely characters into a new node, it builds an optimal binary tree (the Huffman Tree) that results in the most efficient, prefix-free binary code for the given set of characters.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-stone-500">
+            <p>A Study Tool for Design and Analysis of Algorithms.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
