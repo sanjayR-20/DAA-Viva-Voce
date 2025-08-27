@@ -42,9 +42,9 @@
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl md:text-2xl font-bold text-orange-700">DAA Viva Voce Prep ✨</h1>
             <div class="hidden md:flex space-x-6">
-                <a href="#brute-force" class="nav-link text-stone-600 font-medium">Brute Force</a>
-                <a href="#divide-and-conquer" class="nav-link text-stone-600 font-medium">Divide & Conquer</a>
-                <a href="#greedy" class="nav-link text-stone-600 font-medium">Greedy Technique</a>
+                <a href="#brute-force" class="nav-link text-stone-600 font-medium">Brute Force (Knapsack)</a>
+                <a href="#divide-and-conquer" class="nav-link text-stone-600 font-medium">Divide & Conquer (Quick Sort)</a>
+                <a href="#greedy" class="nav-link text-stone-600 font-medium">Greedy Technique (Dijkstra's & Huffman)</a>
             </div>
         </nav>
     </header>
@@ -52,8 +52,8 @@
     <main class="container mx-auto px-6 py-12">
         
         <section id="brute-force" class="mb-20 scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Module II: Brute Force</h2>
-            <p class="text-stone-600 mb-12">This section covers the Brute Force method, a straightforward approach to problem-solving based on the problem's statement and definitions.</p>
+            <h2 class="text-3xl font-bold mb-4">Experiment: Knapsack Problem (Brute Force)</h2>
+            <p class="text-stone-600 mb-12">This section covers the Brute Force method, a straightforward approach to problem-solving, focusing on the Knapsack problem.</p>
             
             <div class="space-y-8">
                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
@@ -61,6 +61,10 @@
                     <p class="text-stone-600">A: It's a straightforward strategy for solving problems, usually based directly on the problem statement and definitions. It's often called the "just do it" approach because it generates every possible solution and checks them against the problem's constraints.</p>
                 </div>
                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Brute Force solve the 0/1 Knapsack Problem?</h3>
+                    <p class="text-stone-600">A: It generates every possible subset of the given items. For each subset, it calculates the total weight and total value. If the total weight is within the knapsack's capacity, it compares the total value with the best solution found so far. This approach has a time complexity of O(2ⁿ), as there are 2ⁿ possible subsets for n items.</p>
+                </div>
+                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
                     <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the strengths and weaknesses of Brute Force?</h3>
                     <p class="text-stone-600"><strong class="font-semibold">Strengths:</strong> It has wide applicability, is simple to implement, and provides reasonable solutions for some important problems like string matching and matrix multiplication.<br><strong class="font-semibold">Weaknesses:</strong> It rarely yields efficient algorithms and can be unacceptably slow for large instances. It's not considered as constructive as other design techniques.</p>
                 </div>
@@ -68,27 +72,19 @@
                     <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the Brute Force approach to the Traveling Salesman Problem (TSP).</h3>
                     <p class="text-stone-600">A: For the Traveling Salesman Problem, the brute force method uses exhaustive search. It generates every possible tour (Hamiltonian circuit), calculates the cost (total distance) of each tour, and then selects the one with the minimum cost. The time complexity is factorial, O((n-1)!), making it infeasible for all but the smallest number of cities.</p>
                 </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Brute Force solve the 0/1 Knapsack Problem?</h3>
-                    <p class="text-stone-600">A: It generates every possible subset of the given items. For each subset, it calculates the total weight and total value. If the total weight is within the knapsack's capacity, it compares the total value with the best solution found so far. This approach has a time complexity of O(2ⁿ), as there are 2ⁿ possible subsets for n items.</p>
-                </div>
             </div>
         </section>
 
         <hr class="my-20 border-stone-200">
 
         <section id="divide-and-conquer" class="mb-20 scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Module II: Divide and Conquer</h2>
-            <p class="text-stone-600 mb-12">This section covers the Divide and Conquer strategy, a well-known algorithm design technique that leads to recursive algorithms.</p>
+            <h2 class="text-3xl font-bold mb-4">Experiment: Quick Sort (Divide and Conquer)</h2>
+            <p class="text-stone-600 mb-12">This section covers the Divide and Conquer strategy, focusing on the Quick Sort algorithm.</p>
             
             <div class="space-y-8">
                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
                     <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What are the three main steps of the Divide and Conquer strategy?</h3>
                     <p class="text-stone-600">A: The three steps are:<br>1. <strong class="font-semibold">Divide:</strong> Break the problem into two or more smaller, independent sub-problems of the same type.<br>2. <strong class="font-semibold">Conquer:</strong> Solve the smaller sub-problems recursively. If a sub-problem is small enough, solve it directly.<br>3. <strong class="font-semibold">Combine:</strong> Merge the solutions of the sub-problems to obtain the solution for the original, larger problem.</p>
-                </div>
-                <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Merge Sort work?</h3>
-                    <p class="text-stone-600">A: Merge Sort follows the Divide and Conquer paradigm. It divides the input array into two halves, recursively calls itself for the two halves to sort them, and then merges the two sorted halves to produce the final sorted array. Its time complexity is O(n log n) in all cases (best, average, and worst).</p>
                 </div>
                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
                     <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: Explain the role of the 'pivot' in Quick Sort.</h3>
@@ -98,14 +94,18 @@
                     <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: What is the worst-case time complexity of Quick Sort and when does it occur?</h3>
                     <p class="text-stone-600">A: The worst-case time complexity of Quick Sort is O(n²). This occurs when the pivot selection consistently results in highly unbalanced partitions. For example, if the array is already sorted and the first or last element is always chosen as the pivot, one partition will have n-1 elements while the other has zero.</p>
                 </div>
+                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-xl font-semibold mb-3 text-orange-700">Q: How does Merge Sort work?</h3>
+                    <p class="text-stone-600">A: Merge Sort follows the Divide and Conquer paradigm. It divides the input array into two halves, recursively calls itself for the two halves to sort them, and then merges the two sorted halves to produce the final sorted array. Its time complexity is O(n log n) in all cases (best, average, and worst).</p>
+                </div>
             </div>
         </section>
 
         <hr class="my-20 border-stone-200">
 
         <section id="greedy" class="scroll-mt-24">
-            <h2 class="text-3xl font-bold mb-4">Module III: Greedy Technique</h2>
-            <p class="text-stone-600 mb-12">This section covers the Greedy Technique, where solutions are constructed through a sequence of steps making locally optimal choices.</p>
+            <h2 class="text-3xl font-bold mb-4">Experiments: Dijkstra's & Huffman (Greedy Technique)</h2>
+            <p class="text-stone-600 mb-12">This section covers the Greedy Technique, focusing on Dijkstra's Shortest Path and Huffman Encoding.</p>
 
             <div class="space-y-8">
                 <div class="qa-card bg-white p-6 rounded-xl shadow-sm border border-stone-200">
