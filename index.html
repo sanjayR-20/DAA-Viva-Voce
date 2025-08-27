@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Cool Blues & Vibrant Accents -->
+    <!-- Chosen Palette: Aura Gradient -->
     <!-- Application Structure Plan: A single-page, scrollable application with a sticky top navigation bar. This structure allows users to easily jump between the main topics from their syllabus. The interactive elements have been replaced with a clear Question & Answer format to function as a study guide. Each topic is in its own section, containing relevant "Viva Voce" style questions and answers derived directly from the provided syllabus documents. This design prioritizes clarity, relevance, and ease of study. -->
     <!-- Visualization & Content Choices: 
         - All interactive elements (charts, diagrams, animations) have been removed.
@@ -20,50 +20,84 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
+            color: #e0e0e0;
+        }
+        #main-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .nav-link {
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
             position: relative;
         }
         .nav-link:hover {
-            color: #f97316;
+            color: #fb923c;
+            text-shadow: 0 0 10px #fb923c;
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background-color: #f97316;
-            transition: all 0.3s ease;
-        }
-        .nav-link:hover::after {
+        .flip-card {
+            background-color: transparent;
             width: 100%;
-            left: 0;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
         }
-        .qa-card {
-            background: white;
-            border-left: 4px solid #f97316;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
-        .qa-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            align-items: flex-start;
+            text-align: left;
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="text-slate-800">
+    <div id="main-background"></div>
 
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+    <header class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 border-b border-white/10">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold text-orange-600">DAA Viva Voce Prep ✨</h1>
+            <h1 class="text-xl md:text-2xl font-bold text-orange-400">DAA Aura Prep ✨</h1>
             <div class="hidden md:flex space-x-8">
-                <a href="#quicksort" class="nav-link text-slate-600 font-medium">Quick Sort</a>
-                <a href="#knapsack" class="nav-link text-slate-600 font-medium">Knapsack</a>
-                <a href="#dijkstra" class="nav-link text-slate-600 font-medium">Dijkstra's</a>
-                <a href="#huffman" class="nav-link text-slate-600 font-medium">Huffman</a>
+                <a href="#quicksort" class="nav-link text-slate-300 font-medium">Quick Sort</a>
+                <a href="#knapsack" class="nav-link text-slate-300 font-medium">Knapsack</a>
+                <a href="#dijkstra" class="nav-link text-slate-300 font-medium">Dijkstra's</a>
+                <a href="#huffman" class="nav-link text-slate-300 font-medium">Huffman</a>
             </div>
         </nav>
     </header>
@@ -71,100 +105,222 @@
     <main class="container mx-auto px-6 py-12">
         
         <section id="quicksort" class="mb-20 scroll-mt-24">
-            <h2 class="text-4xl font-bold mb-4 text-slate-900">Quick Sort & Divide and Conquer</h2>
-            <div class="space-y-6">
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the divide and conquer technique?</h3>
-                    <p class="text-slate-600">A: It is a problem-solving strategy that involves three steps: 1) **Divide** the problem into smaller sub-problems, 2) **Conquer** the sub-problems by solving them recursively, and 3) **Combine** the solutions of the sub-problems to get the solution for the original problem.</p>
+            <h2 class="text-4xl font-bold mb-8 text-white text-center">Quick Sort & Divide and Conquer</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the divide and conquer technique?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: A strategy involving three steps: 1) **Divide** the problem into smaller sub-problems, 2) **Conquer** them recursively, and 3) **Combine** their solutions to solve the original problem.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the pivot element in quick sort?</h3>
-                    <p class="text-slate-600">A: The pivot is an element from the array that is chosen to partition the other elements. In the partitioning step, all elements less than the pivot are moved before it, and all elements greater than the pivot are moved after it. The pivot is then in its final sorted position.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the pivot element in quick sort?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: The pivot is an element used to partition the array. Elements smaller than the pivot are moved to its left, and larger elements to its right, placing the pivot in its final sorted position.</p>
+                        </div>
+                    </div>
                 </div>
-                 <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the worst-case time complexity of Quick Sort?</h3>
-                    <p class="text-slate-600">A: The worst-case time complexity of Quick Sort is O(n²). This happens when the pivot choices lead to extremely unbalanced partitions, such as when sorting an already sorted array.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the worst-case time complexity of Quick Sort?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: O(n²). This occurs with unbalanced partitions, for example, when sorting an already sorted array and picking the first element as the pivot.</p>
+                        </div>
+                    </div>
                 </div>
-                 <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Which sorting algorithms use the divide and conquer technique?</h3>
-                    <p class="text-slate-600">A: Besides Quick Sort, another prominent sorting algorithm that uses the divide and conquer technique is **Merge Sort**.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">Which sorting algorithms use the divide and conquer technique?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Besides Quick Sort, another prominent sorting algorithm that uses the divide and conquer technique is **Merge Sort**.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <hr class="my-20 border-slate-300">
+        <hr class="my-20 border-white/10">
 
         <section id="knapsack" class="mb-20 scroll-mt-24">
-            <h2 class="text-4xl font-bold mb-4 text-slate-900">0/1 Knapsack Problem</h2>
-            <div class="space-y-6">
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the 0/1 Knapsack problem?</h3>
-                    <p class="text-slate-600">A: It is an optimization problem where you are given a set of items, each with a weight and a value, and a knapsack with a maximum weight capacity. The goal is to select a subset of items to put into the knapsack to maximize the total value, without exceeding the weight limit.</p>
+            <h2 class="text-4xl font-bold mb-8 text-white text-center">0/1 Knapsack Problem</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                 <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the 0/1 Knapsack problem?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: An optimization problem to select items with given weights and values to maximize total value in a knapsack without exceeding its weight capacity.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the brute force approach in solving knapsack problems?</h3>
-                    <p class="text-slate-600">A: The brute force approach involves generating all possible subsets of the items (2ⁿ subsets for n items), calculating the total weight and value for each subset, and then choosing the subset that has the maximum value while still being within the weight capacity.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the brute force approach in solving knapsack problems?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Generating all 2ⁿ possible subsets of items and selecting the one with the maximum value that fits within the weight capacity.</p>
+                        </div>
+                    </div>
                 </div>
-                 <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is it called the 0/1 Knapsack problem?</h3>
-                    <p class="text-slate-600">A: It's called the "0/1" problem because for each item, you have only two choices: either you take the item (1) or you don't take it (0). You cannot take a fraction of an item.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">Why is it called the 0/1 Knapsack problem?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Because for each item, you have two choices: either take it (1) or leave it (0). You cannot take a fraction of an item.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the main drawback in the 0/1 Knapsack problem?</h3>
-                    <p class="text-slate-600">A: The main drawback, especially for the brute force solution, is its high computational complexity of O(2ⁿ). This makes it very inefficient and impractical for a large number of items.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the main drawback in the 0/1 Knapsack problem?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: The main drawback of the brute force solution is its high computational complexity of O(2ⁿ), making it impractical for many items.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <hr class="my-20 border-slate-300">
+        <hr class="my-20 border-white/10">
 
         <section id="dijkstra" class="mb-20 scroll-mt-24">
-            <h2 class="text-4xl font-bold mb-4 text-slate-900">Dijkstra's Algorithm</h2>
-            <div class="space-y-6">
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is a greedy algorithm with its application?</h3>
-                    <p class="text-slate-600">A: A greedy algorithm makes the locally optimal choice at each step, hoping this will lead to a globally optimal solution. A key application is **Dijkstra's algorithm** for finding the shortest path in a graph.</p>
+            <h2 class="text-4xl font-bold mb-8 text-white text-center">Dijkstra's Algorithm</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is a greedy algorithm with its application?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: An algorithm that makes the locally optimal choice at each step, hoping to find a global optimum. A key application is Dijkstra's algorithm.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is Dijkstra's algorithm considered a greedy algorithm?</h3>
-                    <p class="text-slate-600">A: It is considered greedy because at every step, it selects the unvisited vertex with the smallest distance from the source. This is a locally optimal choice, made with the goal of finding the overall shortest path.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">Why is Dijkstra's algorithm considered a greedy algorithm?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: It's greedy because at each step, it selects the unvisited vertex with the smallest known distance from the source, which is a locally optimal choice.</p>
+                        </div>
+                    </div>
                 </div>
-                 <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the time complexity of Dijkstra's algorithm?</h3>
-                    <p class="text-slate-600">A: The time complexity depends on the implementation. Using an adjacency matrix or a simple array, it is O(V²). With a more efficient data structure like a binary heap (priority queue), it is O(E + V log V), where V is the number of vertices and E is the number of edges.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the time complexity of Dijkstra's algorithm?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: O(V²) with a simple array, but improves to O(E + V log V) using a priority queue (binary heap).</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is a major limitation of Dijkstra's algorithm?</h3>
-                    <p class="text-slate-600">A: Its major limitation is that it does not work correctly for graphs with negative weight edges, as the greedy assumption no longer holds true in such cases.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is a major limitation of Dijkstra's algorithm?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Its major limitation is that it does not work correctly for graphs with negative weight edges, as the greedy assumption no longer holds true in such cases.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <hr class="my-20 border-slate-300">
+        <hr class="my-20 border-white/10">
 
         <section id="huffman" class="scroll-mt-24">
-            <h2 class="text-4xl font-bold mb-4 text-slate-900">Huffman Encoding</h2>
-            <div class="space-y-6">
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Where is Huffman coding used?</h3>
-                    <p class="text-slate-600">A: Huffman coding is widely used for lossless data compression in file formats like JPEG and PNG, as well as in compression standards such as GZIP and PKZIP.</p>
+            <h2 class="text-4xl font-bold mb-8 text-white text-center">Huffman Encoding</h2>
+             <div class="grid md:grid-cols-2 gap-8">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">Where is Huffman coding used?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: For lossless data compression in formats like JPEG, PNG, GZIP, and PKZIP.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: Why is Huffman coding a lossless compression algorithm?</h3>
-                    <p class="text-slate-600">A: It is "lossless" because no data is lost during compression. The original data can be perfectly reconstructed from the compressed data without any degradation or loss of information.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">Why is Huffman coding a lossless compression algorithm?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Because the original data can be perfectly reconstructed from the compressed data without any loss of information.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: How does Huffman coding exhibit the greedy choice property?</h3>
-                    <p class="text-slate-600">A: Its greedy choice is to always merge the two nodes (characters or sub-trees) that have the lowest frequencies. By repeatedly making this locally optimal choice, it builds a globally optimal prefix code tree for compression.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">How does Huffman coding exhibit the greedy choice property?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Its greedy choice is to always merge the two nodes (characters or sub-trees) with the lowest frequencies, which builds an optimal compression tree.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="qa-card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-3 text-orange-600">Q: What is the main advantage of Huffman coding?</h3>
-                    <p class="text-slate-600">A: Its main advantage is its efficiency in compressing data where some characters appear more frequently than others. By assigning shorter binary codes to frequent characters and longer codes to infrequent ones, it significantly reduces the overall file size compared to fixed-length encoding.</p>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold text-center text-orange-400">What is the main advantage of Huffman coding?</h3>
+                            <p class="mt-4 text-slate-400">Click to see the answer</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-slate-300">A: Its main advantage is assigning shorter codes to frequent characters and longer codes to infrequent ones, significantly reducing file size.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.flip-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
